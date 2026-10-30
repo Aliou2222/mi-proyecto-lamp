@@ -1,0 +1,45 @@
+services:
+  apache:
+    build: ./apache
+    container_name: lamp_apache
+    ports:
+      - "9080:80"
+    volumes:
+      - ./www:/var/www/html
+    depends_on:
+      - mysql
+    networks:
+      - lamp_net
+
+  mysql:
+    image: mysql:9.7
+    container_name: lamp_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - lamp_net
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: lamp_phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: mysql
+    ports:
+      - "9081:80"
+    depends_on:
+      - mysql
+    networks:
+      - lamp_net
+
+volumes:
+  db_data:
+
+networks:
+  lamp_net:

@@ -1,0 +1,3 @@
+Carpeta de destino de las imágenes subidas.
+Apache (usuario www-data) debe poder escribir en ella:
+  sudo chown www-data /var/www/html/ejemplos_formularios/05_subida_ficheros/img

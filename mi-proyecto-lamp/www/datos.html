@@ -1,0 +1,57 @@
+
+<html>
+<body>
+<form action="datos.php" method="POST">
+  
+  Nombre: <input type="text" name="nombre">
+
+  <br>
+
+  Apellidos: <input type="text" name="apellidos">
+
+  <br>
+
+  Nacionalidad:
+  <select multiple size="2" name="nacionalidad[]">
+  <option value="Espaniol" selected>Espaniol</option>
+  <option value="Frances">frances</option>
+  <option value="Italiano">italiano</option>
+  <option value="Griego">griego</option>
+  </select>
+
+<br>
+
+
+ <input type="checkbox" name="idiomas[]"
+  value="Ingles" checked> Ingles
+  <input type="checkbox" name="idiomas[]"
+  value="Frances"> Frances
+  <input type="checkbox" name="idiomas[]"
+  value="Espaniol"> Espaniol
+  <input type="checkbox" name="idiomas[]"
+  value="Valenciano"> Valenciano
+
+<br>
+
+
+  Horario:
+  <input type="radio" name="horario"
+  value="M" checked> Matutino
+  <input type="radio" name="sexo"
+  value="V"> Vespratino
+
+  <br>
+
+ Observaciones:
+  <textarea cols="50" rows="4" name="observacion">
+  Este libro me parece ...
+  </textarea>
+
+<br>
+
+
+ <input type="submit" value="enviar">
+  
+</form>
+</body>
+</html>

@@ -1,0 +1,27 @@
+EJEMPLOS - FORMULARIOS EN PHP
+==============================
+1. Copia la carpeta en la carpeta de Apache:
+     cp -r ejemplos_formularios /var/www/html/
+2. Comprueba que Apache está en marcha:
+     systemctl status apache2        (si no: sudo systemctl start apache2)
+3. Para la subida de ficheros, deja escribir a Apache (usuario www-data) en img/:
+     sudo chown www-data /var/www/html/ejemplos_formularios/05_subida_ficheros/img
+4. Abre http://localhost/ejemplos_formularios/ y elige un ejemplo.
+
+Para ver los avisos (Warning) que aparecen en la presentación:
+     sudo nano /etc/php/8.3/apache2/php.ini   →  display_errors = On
+     sudo systemctl restart apache2
+(cambia 8.3 por tu versión: php -v)
+
+Sin Apache: dentro de la carpeta ejecuta  php -S localhost:8000
+y abre http://localhost:8000/
+
+01_acceso            uno.php -> dos.php, GET/POST, leer sin avisos
+02_elementos         Un archivo por elemento (text, radio, checkbox, select...)
+03_registro_alumno   formulario.html -> registro.php, demostración XSS
+04_autoprocesado     saludo.php (un único archivo), detectar el envío
+05_subida_ficheros   Subida básica, con duplicados, segura y ver $_FILES
+06_validacion        registro_validado.php (errores sobre el propio formulario)
+
+En la presentación, el nombre de cada archivo aparece en la cabecera
+de la ventana de código correspondiente.
