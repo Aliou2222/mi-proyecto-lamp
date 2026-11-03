@@ -71,10 +71,10 @@ switch ($tamano){
     default: $precio=12;
 }
 
-$precio=$precio + $numing * 1;
+$precio_com=$precio + $numing * 1;
 
 if ($pago == "Contado"){
-    $precio = 0.9 * $precio;
+    $precio_com = 0.9 * $precio_com;
 }
 
 
@@ -87,7 +87,7 @@ if ($pago == "Contado"){
       <tr><th>Nº Ingredientes</th><td>$numing</td></tr>
       <tr><th>Ingredientes</th><td>$ingredientes_str</td></tr>
       <tr><th>Intrucciones especiales</th><td>$instrucciones</td></tr>
-      <tr><th>Precio final</th><td>$precio</td></tr>
+      <tr><th>Precio final</th><td>$precio_com</td></tr>
       
     </table>";
     // Mostrar la contraseña es solo didáctico: nunca se hace en una aplicación real

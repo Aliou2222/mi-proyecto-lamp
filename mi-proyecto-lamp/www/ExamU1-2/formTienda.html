@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>Examen PHP</title>
+</head>
+<body>
+<table align=center>
+<form action="procesatienda.php" method="post">
+	<tr bgcolor="orange" ><td colspan="2" align="center">DATOS DE ENVIO</td></tr>
+	<tr><td align=right>Nombre :</td><td><input type="text" name="nombre"></td></tr>
+	<tr><td align=right>Apellidos :</td><td><input type="text" size=40 name="apellidos"></td></tr>
+	<tr><td align=right>Direcci&oacute;n :</td><td><input type="text" size=30 name="direccion"></td></tr>
+	<tr><td align=right>Provincia :</td><td>
+	   <select name="provincia"> 
+		<option></option>
+		<option>Alicante</option>
+		<option>Castell&oacute;n</option>
+		<option>Valencia</option>
+	   </select>
+	</td></tr>
+	<tr bgcolor="orange"><td colspan="2" align="center">DATOS DEL PEDIDO</td></tr>
+	<tr><td align=right>Televisores :</td><td>
+		<select name="televisores"> 
+		<option>0</option>
+		<option>1</option>
+		<option>2</option>
+		<option>3</option>
+		<option>4</option>
+		<option>5</option>
+	   	</select></td></tr>
+	<tr><td align=right>Ordenadores :</td><td><select name="ordenadores"> 
+		<option>0</option>
+		<option>1</option>
+		<option>2</option>
+		<option>3</option>
+		<option>4</option>
+		<option>5</option>
+	   	</select></td></tr>
+	<tr><td align=right>Consolas :</td><td><select name="consolas"> 
+		<option>0</option>
+		<option>1</option>
+		<option>2</option>
+		<option>3</option>
+		<option>4</option>
+		<option>5</option>
+	   	</select></td></tr>
+	<tr><td align=right>Env&iacute;o urgente</td><td><input type="checkbox" name="urgente" value="urgente"></td></tr>
+	<tr bgcolor="orange"><td colspan="2" align="center"></td></tr>
+	<tr><td colspan=2 align=center><input type="submit" value="Validar"><input type="reset" value="Limpiar"></td></tr>
+</form>
+</table>
+</body>
+</html>
