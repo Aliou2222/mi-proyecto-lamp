@@ -1,4 +1,5 @@
 <?php
+mysqli_report(MYSQLI_REPORT_OFF);
 // Material: «Solución del ejercicio 1: primera conexión» (página 11 del PDF)
 // Ejercicio 1: Primera conexión
 // Datos de conexión
