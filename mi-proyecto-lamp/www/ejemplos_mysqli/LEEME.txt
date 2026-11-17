@@ -1,0 +1,98 @@
+EJEMPLOS DEL MATERIAL «ACCESO A DATOS MySQL/MariaDB DESDE PHP CON MYSQLI»
+=========================================================================
+Cada ejemplo y cada solución de ejercicio del PDF está en su propio archivo .php.
+La primera línea de cada archivo indica de qué diapositiva sale y en qué página
+del PDF está. La carpeta proyecto_final contiene una solución completa del
+proyecto integrador (página 67).
+
+Probado con PHP 8.5 y MariaDB 11.8 en Ubuntu 26.04 LTS.
+
+Puesta en marcha con Docker
+---------------------------
+Los ejemplos se conectan al servidor de base de datos «mysql», que es el
+nombre del servicio Docker de la base de datos:
+     mysqli_connect("mysql", "biblioteca", "comomola", "biblioteca");
+El contenedor de PHP y el de la base de datos deben estar en la misma red de
+Docker (por ejemplo, en el mismo docker-compose.yml), porque el nombre «mysql»
+solo se resuelve dentro de esa red.
+
+1. Crea la base de datos biblioteca, la tabla libros y el usuario
+   biblioteca / comomola ejecutando el script en el contenedor «mysql»:
+     docker compose exec -T mysql mysql -u root -p < 00_bd/biblioteca.sql
+   (con una imagen de MariaDB, el cliente también se llama mariadb).
+   El usuario se crea como 'biblioteca'@'%' para que pueda conectarse desde
+   el contenedor de PHP, que es otra máquina para la base de datos.
+   Repite este paso cuando quieras recuperar los 9 libros iniciales.
+2. Copia la carpeta ejemplos_pdf_mysqli en la carpeta que sirve el
+   contenedor web y ábrela en el navegador, por ejemplo:
+     http://localhost/ejemplos_pdf_mysqli/
+3. El contenedor de PHP necesita la extensión mysqli (en la imagen oficial
+   php:apache se instala con: docker-php-ext-install mysqli).
+
+Si en algún momento usas la base de datos instalada en tu propio equipo, sin
+Docker, cambia "mysql" por "localhost" en la conexión.
+
+Ejemplos (en el orden del PDF)
+------------------------------
+Pág.  Archivo
+ 8    00_bd/biblioteca.sql                         script de la base de datos
+ 9    01_introduccion/version.php                  versión de PHP y MySQL
+11    01_introduccion/ejercicio1_conexion.php      ejercicio 1
+15    02_conexion/conexion_verificada.php          conexión con verificación y cierre
+17    02_conexion/ejercicio2_errores.php           ejercicio 2
+20    03_consultas/listar.php                      listar todos los libros
+23    03_consultas/ejercicio3_paidos.php           ejercicio 3
+26    03_consultas/tabla_html.php                  tabla HTML con estilos
+28    03_consultas/ejercicio4_ordenar.php          ejercicio 4
+31    04_escritura/insertar.php                    insertar un libro
+32    04_escritura/eliminar.php                    eliminar sin confirmación
+32    04_escritura/eliminar_confirmacion.php       eliminar con confirmación (?codigo=3)
+34    04_escritura/ejercicio5_actualizar_precio.php  ejercicio 5
+36    05_preparadas/inyeccion_demo.php             inyección SQL: vulnerable frente a preparada
+40    05_preparadas/buscar_autor.php               búsqueda segura por autor
+42    05_preparadas/ejercicio6_editorial.php       ejercicio 6
+45    05_preparadas/insertar_seguro.php            formulario de inserción segura
+49    05_preparadas/ejercicio7_insercion_validada.php  ejercicio 7
+52    05_preparadas/eliminar_seguro.php            eliminar por código
+55    05_preparadas/ejercicio8_actualizar_precio.php   ejercicio 8
+58    05_preparadas/actualizar.php                 actualizar.php, partes 1 y 2 (?codigo=1)
+60    05_preparadas/borrar.php                     borrar.php en dos pasos (?codigo=2)
+63    06_errores/manejo_errores.php                manejo completo de errores
+65    06_errores/ejercicio9_errores.php            ejercicio 9
+67    proyecto_final/                              solución del proyecto integrador
+
+Cambios respecto al código del PDF
+----------------------------------
+El código es el del material. Solo se ha cambiado lo necesario para que funcione
+con PHP 8.5, y cada cambio va marcado en el archivo con un comentario:
+- Usuario y contraseña de la base de datos: biblioteca / comomola en todos.
+- Desde PHP 8.1, mysqli lanza una excepción si algo falla, en lugar de devolver
+  false. Los ejemplos que comprueban if (!$conexion) o if (!$resultado) para
+  demostrar errores llevan mysqli_report(MYSQLI_REPORT_OFF) al principio.
+- Ejercicio 1: la solución del PDF está cortada; aquí está completa.
+- conexion_verificada.php: mysqli_close() solo se llama si la conexión se abrió
+  (mysqli_close(false) es un error fatal en PHP 8).
+- Se usa htmlspecialchars() al mostrar datos escritos por el usuario.
+- Ejercicio 7: mb_trim() y mb_strlen() en lugar de trim() y strlen(), porque las
+  dos últimas cuentan bytes y no caracteres (la "ñ" o la "á" ocupan dos).
+- manejo_errores.php: se define $valor, que en el PDF se usaba sin definir.
+- Ejercicio 9: se añade la prueba que pide el enunciado (texto en un campo
+  numérico, error 1366).
+- actualizar.php: las partes 1 y 2 del PDF están en un único archivo.
+
+Solución del proyecto (proyecto_final)
+--------------------------------------
+config.php      credenciales, conectar(), e() para escapar, validar_libro()
+                y un manejador que muestra un mensaje genérico si algo falla
+index.php       menú principal
+listar.php      tabla con todos los libros ordenados por código, con enlaces
+                para actualizar o eliminar cada uno
+buscar.php      búsqueda por título, autor o editorial
+insertar.php    alta con validación completa
+actualizar.php  paso 1: elegir el libro; paso 2: modificar sus datos
+eliminar.php    muestra los datos y pide confirmación; borra solo por POST
+estilos.css     estilos comunes
+
+Todas las consultas son preparadas, con mysqli_execute_query() (PHP 8.2).
+Usa también novedades de PHP 8.4 y 8.5: mb_trim(), el operador |> y
+array_first(). Con PHP 8.3 o anterior estos archivos dan error.

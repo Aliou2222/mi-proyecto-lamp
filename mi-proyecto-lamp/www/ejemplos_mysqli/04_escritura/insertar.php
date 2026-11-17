@@ -1,6 +1,4 @@
 <?php
-mysqli_report(MYSQLI_REPORT_OFF);
-
 // Material: «Ejemplo: insertar un nuevo libro» (página 31 del PDF)
 $conexion = mysqli_connect("mysql", "biblioteca", "comomola", "biblioteca");
 

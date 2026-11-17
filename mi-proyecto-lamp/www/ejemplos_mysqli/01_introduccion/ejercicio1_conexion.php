@@ -1,7 +1,8 @@
 <?php
-mysqli_report(MYSQLI_REPORT_OFF);
 // Material: «Solución del ejercicio 1: primera conexión» (página 11 del PDF)
-// Ejercicio 1: Primera conexión
+// Necesario en PHP 8.1+ para que mysqli_connect devuelva false en vez de lanzar una excepción
+mysqli_report(MYSQLI_REPORT_OFF);
+
 // Datos de conexión
 $servidor = "mysql";
 $usuario = "biblioteca";

@@ -1,4 +1,6 @@
 <?php
+mysqli_report(MYSQLI_REPORT_OFF);
+
 // Material: «Solución del ejercicio 5: actualizar precio» (página 34 del PDF)
 $conexion = mysqli_connect("mysql", "biblioteca", "comomola", "biblioteca");
 

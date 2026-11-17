@@ -1,4 +1,6 @@
 <?php
+mysqli_report(MYSQLI_REPORT_OFF);
+
 // Material: «Ejemplo: eliminación con confirmación» (página 32-33 del PDF)
 $conexion = mysqli_connect("mysql", "biblioteca", "comomola", "biblioteca");
 

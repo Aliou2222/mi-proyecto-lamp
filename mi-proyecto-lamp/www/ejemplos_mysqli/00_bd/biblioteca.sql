@@ -1,7 +1,7 @@
 -- ============================================================
 -- Base de datos de ejemplo: biblioteca
--- En Ubuntu/Debian se importa desde la terminal con:
---     sudo mariadb < biblioteca.sql
+-- Se importa en el servicio Docker «mysql» desde la terminal con:
+--     docker compose exec -T mysql mysql -u root -p < biblioteca.sql
 -- Vuelve a ejecutarlo cuando quieras dejar los datos como al principio
 -- (los ejemplos insertan, modifican y borran libros).
 -- ============================================================

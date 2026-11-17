@@ -1,4 +1,6 @@
 <?php
+mysqli_report(MYSQLI_REPORT_OFF);
+
 // Material: «Ejemplo: buscar libros por autor (seguro)» (página 40 del PDF)
 $conexion = mysqli_connect("mysql", "biblioteca", "comomola", "biblioteca");
 

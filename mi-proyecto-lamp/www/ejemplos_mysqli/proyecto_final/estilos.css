@@ -1,0 +1,13 @@
+body { font-family: sans-serif; margin: 30px; max-width: 900px; }
+nav { margin-bottom: 20px; }
+nav a { margin-right: 15px; color: #4f5b93; font-weight: bold; text-decoration: none; }
+table { border-collapse: collapse; width: 100%; }
+th { background-color: #1B1B27; color: white; padding: 10px; text-align: left; }
+td { border: 1px solid #ddd; padding: 8px; }
+tr:nth-child(even) { background-color: #f2f2f2; }
+label { display: block; margin-top: 10px; }
+input, select { padding: 5px; }
+button { margin-top: 15px; padding: 6px 14px; }
+.ok { color: #2e9e6a; }
+.error { color: #d64550; }
+.peligro { background: #d64550; color: white; border: none; }

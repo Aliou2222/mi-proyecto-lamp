@@ -1,4 +1,7 @@
 <?php
+mysqli_report(MYSQLI_REPORT_OFF);
+
+
 // Material: «Ejemplo: eliminar registros (sin confirmación)» (página 32 del PDF)
 $conexion = mysqli_connect("mysql", "biblioteca", "comomola", "biblioteca");
 
@@ -6,7 +9,7 @@ if (!$conexion) {
     die("Error de conexión: " . mysqli_connect_error());
 }
 
-$codigo_a_eliminar = 9; // Ejemplo: eliminar el libro con código 9
+$codigo_a_eliminar =$_GET["cod"]??0; // Ejemplo: eliminar el libro con código 9
 
 $query = "DELETE FROM libros WHERE codigo = $codigo_a_eliminar";
 
